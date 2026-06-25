@@ -22,7 +22,7 @@ const terminalMode = {
     entry: './src/index.js',
     target: "node",
     output: {
-        filename: 'build.node.js', 
+        filename: 'build.terminal.js', 
         path: path.resolve(__dirname, 'dist/terminal') 
     },
     mode: 'production'
