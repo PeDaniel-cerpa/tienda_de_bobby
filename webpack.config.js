@@ -8,7 +8,6 @@ const webMode = {
         filename: 'bundle.browser.js',
         path: path.resolve(__dirname, 'dist/browser')
     },
-    // 1. Esto le dice a Webpack que no empaquete scanf en el bundle web
     externals: {
         'scanf': '{}' 
     },
@@ -23,8 +22,8 @@ const terminalMode = {
     entry: './src/index.js',
     target: "node",
     output: {
-        filename: 'build.node.js', // Cambiado para evitar que se sobreescriban
-        path: path.resolve(__dirname, 'dist/terminal') // Separado en su propia carpeta
+        filename: 'build.node.js', 
+        path: path.resolve(__dirname, 'dist/terminal') 
     },
     mode: 'production'
 };
