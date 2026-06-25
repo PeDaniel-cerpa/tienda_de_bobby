@@ -29,8 +29,7 @@ Sigue estos pasos para clonar el repositorio e instalar las dependencias necesar
 
 1. **Clonar el repositorio:**
 ```bash
-   git clone [https://github.com/PeDaniel-cerpa/tienda_de_bobby.git](https://github.com/PeDaniel-cerpa/tienda_de_bobby.git)
-   cd tienda_de_bobby
+  git clone https://github.com/PeDaniel-cerpa/tienda_de_bobby.git
 ```
 
 2. **Instalar dependencias**
