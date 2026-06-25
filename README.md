@@ -35,6 +35,7 @@ Sigue estos pasos para clonar el repositorio e instalar las dependencias necesar
 
 2. **Instalar dependencias**
 
+**Instalar node**
    
 si usas npm:
 ```bash
@@ -45,3 +46,25 @@ si usas yarn:
 ```bash
 yarn install
 ```
+**Instalar webpack**
+```bash
+npm install --save-dev webpack webpack-cli
+```
+**Instalar scanf (para la version en consola)**
+```bash
+npm install scanf
+```
+
+##  Comandos para compilar
+
+**para compilar la version web**
+```bash
+npm run build:web   
+```
+**para compilar la version en terminal**
+```bash
+npm run build:terminal   
+```
+
+
+
