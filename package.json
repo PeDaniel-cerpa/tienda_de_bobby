@@ -1,0 +1,25 @@
+{
+  "name": "tiendadebooby",
+  "version": "1.0.0",
+  "description": "Este es un proyecto enfocado en costruir una solucion de gestion de inventario y ventas para una tienda de barrio usando typeScript y node js, aplicando POO y los principios SOLID.",
+  "keywords": [],
+  "license": "ISC",
+  "author": "daniel",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "build:web": "webpack --config-name browserConfig",
+    "build:terminal": "webpack --config-name terminalConfig",
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "undici-types": "^7.18.2"
+  },
+  "devDependencies": {
+    "@types/node": "^25.3.3",
+    "scanf": "^1.2.1",
+    "webpack": "^5.107.2",
+    "webpack-cli": "^7.0.3"
+  }
+}
