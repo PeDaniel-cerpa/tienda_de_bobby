@@ -19,7 +19,7 @@ Este es un proyecto enfocado en construir una solución de gestión de inventari
 Antes de comenzar, asegúrate de tener instalado lo siguiente en tu equipo:
 
 * **Node.js**: Versión `24.12` o superior. [Clik aqui para ir a la pagina oficial de node.js](https://nodejs.org/es/download) 
-* **npm** (incluido con Node) o **yarn** como gestor de dependencias.
+* **npm** (incluido con Node).
 
 ---
 
