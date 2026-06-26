@@ -1,13 +1,20 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+
 
 const webMode = {
     name: 'browserConfig',
     entry: './src/index.js',
     target: "web",
     output: {
-        filename: 'bundle.browser.js',
-        path: path.resolve(__dirname, 'dist/browser')
+        filename: 'build.browser.js',
+        path: path.resolve(__dirname, 'dist/builds/browser')
     },
+    plugins: [new HtmlWebpackPlugin({
+        template: "./src/index.html",
+        title: "tienda Bobby"
+    })],
     externals: {
         'scanf': '{}' 
     },
@@ -23,7 +30,7 @@ const terminalMode = {
     target: "node",
     output: {
         filename: 'build.terminal.js', 
-        path: path.resolve(__dirname, 'dist/terminal') 
+        path: path.resolve(__dirname, 'dist/builds/terminal') 
     },
     mode: 'production'
 };

@@ -22,6 +22,10 @@ export class AplicationBuilder implements builder {
         return this;
     }
 
+    webView(){
+        return this;
+    }
+
     build() {
         return this.app;
     }

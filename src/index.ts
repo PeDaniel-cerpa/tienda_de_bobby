@@ -1,6 +1,3 @@
-import { AplicationBuilder } from "./class/aplicationBuilderService";
+import app from "./app/app.js";
 
-const app = new AplicationBuilder().terminalView().build();
 app.start();
-
-export default app;
