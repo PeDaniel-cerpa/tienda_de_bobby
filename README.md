@@ -83,3 +83,21 @@ para ejecutar la version **web** ejecuta:
 ```bash
 npm run go:web
 ```
+
+## Capturas version en terminal
+
+**Menu version en Terminal**
+
+<img src="./src/assets/images/menuAppTerminal.png" alt="Menu version en terminal" width="600">
+
+
+**Opciones de la tienda**
+
+<img src="./src/assets/images/addClient.png" alt="opcion agregar clientes" width="600">
+
+
+## Capturas version web
+
+**Pagina principal**
+
+<img src="./src/assets/images/webPage.png" alt="opcion agregar clientes" width="600">
