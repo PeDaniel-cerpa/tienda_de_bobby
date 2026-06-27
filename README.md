@@ -27,51 +27,27 @@ Antes de comenzar, asegúrate de tener instalado lo siguiente en tu equipo:
 
 Sigue estos pasos para clonar el repositorio e instalar las dependencias necesarias:
 
-## 1. Clonar el repositorio
+## 1. Clonar el repositorio e instalar dependencias
 ```bash
-  git clone https://github.com/PeDaniel-cerpa/tienda_de_bobby.git
+  git clone https://github.com/PeDaniel-cerpa/tienda_de_bobby.git && npm install
 ```
- ## 2. Instalar dependencias
+## Dependencias del Proyecto
 
-**Instalar las dependencias requeridas**
-   
-```bash
-npm install
-```
+Todas se instalan automáticamente al ejecutar `npm install`.
 
-**Instalar TypeScript**
+**Dependencias de producción** (necesarias para ejecutar la app):
+- `scanf` — permite leer datos ingresados por el usuario en la versión de terminal.
+- `undici-types` — tipos usados internamente por Node.js.
 
-```bash
-npm install typescript --save-dev
-```
+**Dependencias de desarrollo** (necesarias solo para compilar y construir el proyecto):
+- `typescript` y `ts-loader` — compilan el código TypeScript.
+- `webpack`, `webpack-cli` y `webpack-dev-server` — empaquetan y sirven la aplicación.
+- `html-webpack-plugin` — genera el `index.html` de la versión web.
+- `rimraf` — limpia la carpeta `dist/` antes de un nuevo build.
+- `@types/node` — tipos de Node.js para TypeScript.
 
-**Instalar webpack**
-
-```bash
-npm install --save-dev webpack webpack-cli
-```
-
-**instalar HtmlWebpackPlugin**
-
-```bash
-npm install --save-dev html-webpack-plugin
-```
-
-**Instalar scanf (requerido para la version en consola)**
-
-```bash
-npm install scanf
-```
 
 ##  Comandos para compilar
-
-**Ya que el proyecto esta construido usando Ts debe ser compilado usando el siguiente comando:**
-
-```bash
-npx tsc
-```
-
-dentro del directorio `src` podras observar los archivos transpilados a Js, los cuales son necesarios para realizar las respectivas builds de la tienda de Bobby
 
 **para compilar la version web**
 
@@ -86,20 +62,24 @@ npm run build:terminal
 
 ## Ejecucion de la app
 
-Una vez realizado el paso anterior podras observar una directorio con el nombre de `dist/builds` en el cual encontraras las respectibas builds de la app.
+Una vez realizado el paso anterior puedes ejecutar la tienda con los siguientes comandos:
 
 **Version en Terminal**
 
-para ejecutar la version en **terminal** dentro de la carpeta `terminal` ubicada en `dist/builds` ejecuta:
+para ejecutar la version en **terminal** ejecuta:
 
 
 ```bash
-node build.terminal.js
+npm run go:terminal
 ```
 
 **Version Web**
 
-para ejecutar la version  **web** dentro de la carpeta `browser` ubicada en `dist/builds` **Abre el `index.html`** para cargar la app en el navegador de tu preferencia.
+para ejecutar la version  **web** ejecuta:
+
+```bash
+npm run go:web
+```
 
 
 

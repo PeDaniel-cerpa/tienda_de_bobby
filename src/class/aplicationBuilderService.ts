@@ -4,25 +4,25 @@ import { Client } from "../types/clientModel";
 import { Product } from "../types/productModel";
 import { Sell } from "../types/sellModel";
 import { View } from "./view";
+import { ViewWeb } from "./viewWeb";
 import { builder } from "../interfaces/aplicationBuilder";
 
 export class AplicationBuilder implements builder {
-    private app!:Aplication;
+    private app!: Aplication;
 
     terminalView() {
         this.app = new Aplication(
-
             new View(
-                new inMemoryServices<Product>,
-                new inMemoryServices<Client>,
-                new inMemoryServices<Sell>
-            )
+                new inMemoryServices<Product>(),
+                new inMemoryServices<Client>(),
+                new inMemoryServices<Sell>(),
+            ),
         );
 
         return this;
     }
 
-    webView(){
+    webView() {
         return this;
     }
 

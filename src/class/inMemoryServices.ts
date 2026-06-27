@@ -13,32 +13,34 @@ export class inMemoryServices<T> implements CRUDF {
 
     update<T>(id: number, data: T): boolean {
         let status = true;
-        let indexResult = this.inMemoryDataBase.findIndex(([key, value]) => id === value);
+        let indexResult = this.inMemoryDataBase.findIndex(
+            ([key, value]) => id === value,
+        );
 
         if (indexResult === -1) {
-            status = false
+            status = false;
+        } else {
+            this.inMemoryDataBase[indexResult] = data;
         }
-        else {
-            this.inMemoryDataBase[indexResult] = data
-        };
         return status;
     }
 
     delete(id: number): boolean {
         let status = true;
-        let indexResult = this.inMemoryDataBase.findIndex(([key, value]) => id === value);
+        let indexResult = this.inMemoryDataBase.findIndex(
+            ([key, value]) => id === value,
+        );
 
-        if (indexResult === -1)
-            status = false
+        if (indexResult === -1) status = false;
 
         this.inMemoryDataBase.splice(indexResult, 1);
         return status;
     }
 
     findById<T>(id: number): number {
-        let indexResult = this.inMemoryDataBase.findIndex(value => value.id === id);
+        let indexResult = this.inMemoryDataBase.findIndex(
+            (value) => value.id === id,
+        );
         return indexResult;
     }
-
-
 }
