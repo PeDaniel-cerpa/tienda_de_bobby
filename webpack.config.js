@@ -27,7 +27,8 @@ const webMode = {
         title: "tienda Bobby"
     })],
     externals: {
-        'scanf': '{}'
+        'scanf': '{}',
+        'node-localstorage': '{}'
     },
     mode: 'production'
 };
