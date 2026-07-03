@@ -37,18 +37,29 @@ Sigue estos pasos para clonar el repositorio e instalar las dependencias necesar
 
 Todas se instalan automáticamente al ejecutar `npm install`.
 
-**Dependencias de producción** (necesarias para ejecutar la app):
+### Dependencias de Producción
+*Estas dependencias se quedan en el proyecto final porque la aplicación las necesita directamente para ejecutarse y funcionar.*
 
-- `scanf` — permite leer datos ingresados por el usuario en la versión de terminal.
-- `undici-types` — tipos usados internamente por Node.js.
+*   **`dotenv`** — Maneja las variables de entorno para las configuraciones seguras.
+*   **`node-localstorage`** — Simula el almacenamiento `localStorage` para guardar datos desde la terminal.
+*   **`scanf`** — Captura lo que el usuario escribe en la consola.
+*   **`ts-node`** — Ejecuta archivos TypeScript en Node sin compilar a mano en desarrollo.
+*   **`undici-types`** — Tipos internos para el motor de peticiones de Node.
+*   **`util`** — Herramientas nativas de Node para dar soporte a funciones del código.
 
-**Dependencias de desarrollo** (necesarias solo para compilar y construir el proyecto):
+### Dependencias de Desarrollo
+*Estas herramientas solo sirven para escribir código, automatizar tareas, compilar de TypeScript a JavaScript y empaquetar la app. No se incluyen en el producto final.*
 
-- `typescript` y `ts-loader` — compilan el código TypeScript.
-- `webpack`, `webpack-cli` y `webpack-dev-server` — empaquetan y sirven la aplicación.
-- `html-webpack-plugin` — genera el `index.html` de la versión web.
-- `rimraf` — limpia la carpeta `dist/` antes de un nuevo build.
-- `@types/node` — tipos de Node.js para TypeScript.
+*   **`typescript`** — El compilador oficial de TypeScript.
+*   **`ts-loader`** — Conecta TypeScript con Webpack para que trabajen juntos.
+*   **`webpack`** — Empaqueta todo tu código y módulos en archivos finales listos para producción.
+*   **`webpack-cli`** — Permite ejecutar comandos de Webpack desde la terminal.
+*   **`webpack-dev-server`** — Levanta el servidor local rápido para probar la versión Web.
+*   **`html-webpack-plugin`** — Genera el archivo `index.html` e inserta los scripts automáticamente.
+*   **`string-replace-loader`** — Reemplaza textos o configuraciones en los archivos mientras se compilan.
+*   **`rimraf`** — Limpia y borra la carpeta `dist/` antes de cada nuevo build.
+*   **`@types/node`** — Autocompletado y tipado de Node.js en TypeScript.
+*   **`@types/node-localstorage`** — Autocompletado y tipado para la librería de almacenamiento.
 
 ## Comandos para compilar
 
@@ -95,7 +106,61 @@ para ejecutar la version **web** ejecuta:
 ```bash
 npm run go:web
 ```
-
+### Estructura del protecto
+```bash
+tienda_de_bobby/
+├── src/                         # Código fuente principal
+│   ├── app/                     # Entradas de la aplicación
+│   │   ├── app.ts               # Entrada terminal
+│   │   ├── appLocalStorage.ts   # Entrada terminal con node-localstorage
+│   │   └── appWeb.ts            # Entrada web
+│   │
+│   ├── assets/                  # Recursos estáticos
+│   │   └── images/              # Imágenes usadas en la app
+│   │       ├── addClient.png
+│   │       ├── menuAppTerminal.png
+│   │       └── webPage.png
+│   │
+│   ├── class/                   # Servicios y lógica de negocio
+│   │   ├── Aplication.ts
+│   │   ├── aplicationBuilderService.ts
+│   │   ├── inLocalStorageService.ts
+│   │   ├── inMemoryServices.ts
+│   │   ├── view.ts
+│   │   └── viewWeb.ts
+│   │
+│   ├── interfaces/              # Interfaces para contratos y CRUD
+│   │   ├── CRUD.ts
+│   │   ├── CRUDF.ts
+│   │   ├── aplicationBuilder.ts
+│   │   ├── inMemoryServiceClient.ts
+│   │   ├── inMemoryServicesProduct.ts
+│   │   └── inMemoryServicesSell.ts
+│   │
+│   ├── types/                   # Modelos tipados
+│   │   ├── clientModel.ts
+│   │   ├── productModel.ts
+│   │   └── sellModel.ts
+│   │
+│   ├── index.html               # Plantilla HTML para la versión web
+│   └── index.ts                 # Punto de entrada común
+│
+├── dist/                        # Carpeta de salida de builds (generada)
+│   ├── builds/
+│   │   ├── browser/             # Compilación para navegador
+│   │   │   └── build.browser.js
+│   │   └── terminal/            # Compilaciones para terminal
+│   │       ├── build.terminal.js
+│   │       └── build.terminal.local.js
+│
+├── .editorconfig                # Configuración de estilo de código
+├── .gitignore                   # Archivos ignorados por Git
+├── README.md                    # Documentación del proyecto
+├── package.json                 # Dependencias y scripts
+├── package-lock.json            # Bloqueo de dependencias
+├── tsconfig.json                # Configuración de TypeScript
+└── webpack.config.js            # Configuración de Webpack
+```
 ## Capturas version en terminal
 
 **Menu version en Terminal**
