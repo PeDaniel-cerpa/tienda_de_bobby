@@ -32,6 +32,29 @@ const webMode = {
     mode: 'production'
 };
 
+const terminalModeLocalStorage = {
+    name: 'terminalConfigLocalStorage',
+    entry: './src/app/appLocalStorage.ts',
+    target: "node",
+    output: {
+        filename: 'build.terminal.local.js',
+        path: path.resolve(__dirname, 'dist/builds/terminal')
+    },
+    module: {
+        rules: [
+            {
+                test: /\.ts$/,
+                use: 'ts-loader',
+                exclude: /node_modules/,
+            },
+        ],
+    },
+    resolve: {
+        extensions: ['.ts', '.js']
+    },
+    mode: 'production'
+};
+
 const terminalMode = {
     name: 'terminalConfig',
     entry: './src/app/app.ts',
@@ -57,5 +80,5 @@ const terminalMode = {
 
 module.exports = [
     webMode,
-    terminalMode
+    terminalMode,terminalModeLocalStorage
 ];

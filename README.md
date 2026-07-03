@@ -64,6 +64,12 @@ npm run build:web
 npm run build:terminal
 ```
 
+**para compilar la version con persistencia local ejecuta:**
+
+```bash
+npm run go:terminal:localStorage
+```
+
 ## Ejecucion de la app
 
 Una vez realizado el paso anterior puedes ejecutar la tienda con los siguientes comandos:
@@ -74,6 +80,12 @@ para ejecutar la version en **terminal** ejecuta:
 
 ```bash
 npm run go:terminal
+```
+
+para ejecutar la version con persistencia local ejecuta:
+
+```bash
+npm run go:terminal:localStorage
 ```
 
 **Version Web**

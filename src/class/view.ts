@@ -143,17 +143,18 @@ export class View {
         console.log("-------------------------------------");
     }
 
-    valideStock(tempProduct: Product, stockSellProduct: any) {
+    valideStock(tempProduct: Product, stockSellProduct: any):boolean {
         if (tempProduct.stock < stockSellProduct) {
             console.log(
                 `Cantidad del producto no dispponible, stock actual ${tempProduct.stock}`,
             );
-            return;
+            return false;
         } else {
             tempProduct.stock -= stockSellProduct;
             console.log(
                 `venta exitosa, cantidad disponible de ${tempProduct.name} = ${tempProduct.stock}`,
             );
+            return true;
         }
     }
 
@@ -164,7 +165,7 @@ export class View {
         const temBaseClient = this.inMemoryServiceClient.read<Client>();
         const indexClient = this.inMemoryServiceClient.findById(idClient);
 
-        if (idClient === -1) {
+        if (indexClient === -1) {
             console.log("Cliente no encontrado");
             return;
         }
@@ -189,6 +190,9 @@ export class View {
         let stockSellProduct = scanf("%d");
 
         this.valideStock(tempProduct, stockSellProduct);
+        if (this.valideStock(tempProduct, stockSellProduct) === true) {
+            this.inMemoryServiceProducts.update<Product>(tempProduct.id, tempProduct);
+        }
 
         const tempSell: Sell = {
             idClient: tempClient,
