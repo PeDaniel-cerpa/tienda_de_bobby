@@ -30,7 +30,7 @@ Sigue estos pasos para clonar el repositorio e instalar las dependencias necesar
 ## Clonar el repositorio e instalar dependencias
 
 ```bash
-    git clone https://github.com/PeDaniel-cerpa/tienda_de_bobby.git && cd tienda_de_bobby && npm install
+git clone https://github.com/PeDaniel-cerpa/tienda_de_bobby.git && cd tienda_de_bobby && npm install
 ```
 
 ## Dependencias del Proyecto
@@ -129,7 +129,7 @@ tienda_de_bobby/
 │   │   ├── view.ts
 │   │   └── viewWeb.ts
 │   │
-│   ├── interfaces/              # Interfaces para contratos y CRUD
+│   ├── interfaces/              # Interfaces y CRUD
 │   │   ├── CRUD.ts
 │   │   ├── CRUDF.ts
 │   │   ├── aplicationBuilder.ts
