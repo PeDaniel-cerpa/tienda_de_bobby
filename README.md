@@ -67,7 +67,7 @@ npm run build:terminal
 **para compilar la version con persistencia local ejecuta:**
 
 ```bash
-npm run go:terminal:localStorage
+npm run build:terminal:localStorage
 ```
 
 ## Ejecucion de la app
