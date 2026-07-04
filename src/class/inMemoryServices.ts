@@ -14,7 +14,7 @@ export class inMemoryServices<T> implements CRUDF {
     update<T>(id: number, data: T): boolean {
         let status = true;
         let indexResult = this.inMemoryDataBase.findIndex(
-            ([key, value]) => id === value,
+            (value: any) => value.id === id,
         );
 
         if (indexResult === -1) {
@@ -28,12 +28,15 @@ export class inMemoryServices<T> implements CRUDF {
     delete(id: number): boolean {
         let status = true;
         let indexResult = this.inMemoryDataBase.findIndex(
-            ([key, value]) => id === value,
+            (value: any) => value.id === id,
         );
 
-        if (indexResult === -1) status = false;
+        if (indexResult === -1) {
+            status = false;
+        } else {
+            this.inMemoryDataBase.splice(indexResult, 1);
+        }
 
-        this.inMemoryDataBase.splice(indexResult, 1);
         return status;
     }
 

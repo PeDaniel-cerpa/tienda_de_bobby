@@ -9,7 +9,7 @@ import { Sell } from "../types/sellModel";
 import { inMemoryServices } from "./inMemoryServices";
 import dotenv from "dotenv";
 
-const envUse = `.env.${process.env.NODE_ENV || "qa"}`;
+const envUse = `.env.${process.env.NODE_ENV || "local"}`;
 dotenv.config({ path: envUse });
 
 var scanf = require("scanf");
@@ -178,8 +178,7 @@ export class View {
         const tempClient = temBaseClient[indexClient];
         console.log(`Cliente encontrado ${tempClient.name}`);
 
-        //this.valideId(idClient>);
-        console.log("ingrese el id del prodcuto");
+        console.log("ingrese el id del producto a vender");
         let idProduct = scanf("%d");
 
         const tempBaseProduct = this.inMemoryServiceProducts.read<Product>();
@@ -195,17 +194,18 @@ export class View {
         console.log("Ingrese la cantidad a comprar");
         let stockSellProduct = scanf("%d");
 
-        this.valideStock(tempProduct, stockSellProduct);
-        if (this.valideStock(tempProduct, stockSellProduct) === true) {
+        const saleAllowed = this.valideStock(tempProduct, stockSellProduct);
+
+        if (saleAllowed) {
             this.inMemoryServiceProducts.update<Product>(tempProduct.id, tempProduct);
+
+            const tempSell: Sell = {
+                idClient: tempClient,
+                idProduct: tempProduct,
+            };
+
+            this.inMemoryServiceSell.create(tempSell);
+            this.printSell(tempClient, tempProduct, stockSellProduct);
         }
-
-        const tempSell: Sell = {
-            idClient: tempClient,
-            idProduct: tempProduct,
-        };
-
-        this.inMemoryServiceSell.create(tempSell);
-        this.printSell(tempClient, tempProduct, stockSellProduct);
     }
 }
