@@ -61,6 +61,10 @@ Todas se instalan automáticamente al ejecutar `npm install`.
 *   **`@types/node`** — Autocompletado y tipado de Node.js en TypeScript.
 *   **`@types/node-localstorage`** — Autocompletado y tipado para la librería de almacenamiento.
 
+## Variables de entorno
+
+**Este proyecto usa variables de entorno asi que asegurate de configurar estas para su correcto funcionanmiento, consulta estas en el [.env.example](./.env.example)**
+
 ## Comandos para compilar
 
 **para compilar la version web**
@@ -154,12 +158,14 @@ tienda_de_bobby/
 │   │       └── build.terminal.local.js
 │
 ├── .editorconfig                # Configuración de estilo de código
+├── .env.example                # archivo ejemplo de las variables de entorno 
 ├── .gitignore                   # Archivos ignorados por Git
 ├── README.md                    # Documentación del proyecto
 ├── package.json                 # Dependencias y scripts
 ├── package-lock.json            # Bloqueo de dependencias
 ├── tsconfig.json                # Configuración de TypeScript
 └── webpack.config.js            # Configuración de Webpack
+
 ```
 ## Capturas version en terminal
 

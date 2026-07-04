@@ -7,6 +7,10 @@ import { Client } from "../types/clientModel";
 import { Product } from "../types/productModel";
 import { Sell } from "../types/sellModel";
 import { inMemoryServices } from "./inMemoryServices";
+import dotenv from "dotenv";
+
+const envUse = `.env.${process.env.NODE_ENV || "qa"}`;
+dotenv.config({ path: envUse });
 
 var scanf = require("scanf");
 
@@ -22,6 +26,8 @@ export class View {
         console.log();
         console.log("--- LA TIENDA DE BOOBY, AHORA SIN PROMESAS!!! ---");
         console.log();
+        console.log(`Conectado al puerto: ${process.env.PORT}`);
+        console.log(`Entorno: ${process.env.NODE_ENV}`);
         console.log("-----------------------------------------------");
         this.buildMenuApp();
     }
