@@ -63,7 +63,7 @@ Todas se instalan automáticamente al ejecutar `npm install`.
 
 ## Variables de entorno
 
-**Este proyecto usa variables de entorno asi que asegurate de configurar estas para su correcto funcionanmiento, consulta estas en el [.env.example](./.env.example)**
+**Este proyecto usa variables de entorno asi que asegurate de configurar estas para su correcto funcionamiento, consulta estas en el archivo [.env.example](./.env.example)**
 
 ## Comandos para compilar
 
