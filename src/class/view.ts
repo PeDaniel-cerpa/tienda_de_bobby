@@ -9,8 +9,8 @@ import { Sell } from "../types/sellModel";
 import { inMemoryServices } from "./inMemoryServices";
 import dotenv from "dotenv";
 
-const envUse = `.env.${process.env.NODE_ENV || "local"}`;
-dotenv.config({ path: envUse });
+const envKey = `.env.${process.env.NODE_ENV || "local"}`;
+dotenv.config({ path: envKey });
 
 var scanf = require("scanf");
 
