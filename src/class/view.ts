@@ -1,11 +1,11 @@
 "../../services/inMemoryServices";
 
-import { inMemoryServiceClient } from "../interfaces/inMemoryServiceClient";
-import { inMemoryServicesProduct } from "../interfaces/inMemoryServicesProduct";
-import { inMemoryServicesSell } from "../interfaces/inMemoryServicesSell";
-import { Client } from "../types/clientModel";
-import { Product } from "../types/productModel";
-import { Sell } from "../types/sellModel";
+import type { inMemoryServiceClient } from "../interfaces/inMemoryServiceClient";
+import type { inMemoryServicesProduct } from "../interfaces/inMemoryServicesProduct";
+import type { inMemoryServicesSell } from "../interfaces/inMemoryServicesSell";
+import type { Client } from "../types/clientModel";
+import type { Product } from "../types/productModel";
+import type { Sell } from "../types/sellModel";
 import { inMemoryServices } from "./inMemoryServices";
 import dotenv from "dotenv";
 
@@ -175,7 +175,7 @@ export class View {
             console.log("Cliente no encontrado");
             return;
         }
-        const tempClient = temBaseClient[indexClient];
+        const tempClient = temBaseClient[indexClient]!;
         console.log(`Cliente encontrado ${tempClient.name}`);
 
         console.log("ingrese el id del producto a vender");
@@ -189,7 +189,7 @@ export class View {
             return;
         }
 
-        const tempProduct = tempBaseProduct[indexProduct];
+        const tempProduct = tempBaseProduct[indexProduct]!;
         console.log(`producto encontrado ${tempProduct.name}`);
         console.log("Ingrese la cantidad a comprar");
         let stockSellProduct = scanf("%d");

@@ -1,5 +1,5 @@
 import { LocalStorage } from 'node-localstorage';
-import { CRUDF } from '../interfaces/CRUDF';
+import type { CRUDF } from '../interfaces/CRUDF';
 
 const localStorage = new LocalStorage('./bobyData');
 

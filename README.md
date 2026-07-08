@@ -2,6 +2,8 @@
 
 Este es un proyecto enfocado en construir una solución de gestión de inventario y ventas para una tienda de barrio. Está desarrollado utilizando **TypeScript** y **Node.js**, aplicando Programación Orientada a Objetos (**POO**) y los principios **SOLID**.
 
+Esta app cuenta con vista web y vista en terminal, esta ultima permite guardar los datos de clientes y productos en su version con localStorage.
+
 ---
 
 ## Características
@@ -63,9 +65,17 @@ Todas se instalan automáticamente al ejecutar `npm install`.
 
 ## Variables de entorno
 
-**Este proyecto usa variables de entorno asi que asegurate de configurar estas para su correcto funcionamiento, consulta estas en el archivo [.env.example](./.env.example)**
+**Este proyecto usa variables de entorno asi que asegurate de configurar estas para su correcto funcionamiento, consulta estas en el archivo [.env.example](./.env.example), ¡la aplicacion espera un archivo llamado `.env.production` en la raiz del proyecto asegurate de configurarlo!**
 
 ## Comandos para compilar
+
+**Para realizar la compilacion completa de la tienda**
+
+```bash
+npm run build
+```
+
+o puedes compilar las versiones individuales con los siguientes comandos
 
 **para compilar la version web**
 
@@ -79,7 +89,7 @@ npm run build:web
 npm run build:terminal
 ```
 
-**para compilar la version con persistencia local ejecuta:**
+**para compilar la version con persistencia local**
 
 ```bash
 npm run build:terminal:localStorage
