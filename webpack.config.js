@@ -28,7 +28,8 @@ const webMode = {
     })],
     externals: {
         'scanf': '{}',
-        'node-localstorage': '{}'
+        'node-localstorage': '{}',
+        'dotenv': '{}'
     },
     mode: 'production'
 };
