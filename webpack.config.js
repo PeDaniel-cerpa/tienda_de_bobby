@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const webMode = {
     name: 'browserConfig',
-    entry: './src/app/appWeb.ts',
+    entry: './src/index.ts',
     target: "web",
     output: {
         filename: 'build.browser.js',
@@ -23,7 +23,7 @@ const webMode = {
         fallback: { "fs": false, "path": false }
     },
     plugins: [new HtmlWebpackPlugin({
-        template: "./src/index.html",
+        template: "./src/ui/web/index.html",
         title: "tienda Bobby"
     })],
     externals: {
@@ -34,32 +34,10 @@ const webMode = {
     mode: 'production'
 };
 
-const terminalModeLocalStorage = {
-    name: 'terminalConfigLocalStorage',
-    entry: './src/app/appLocalStorage.ts',
-    target: "node",
-    output: {
-        filename: 'build.terminal.local.js',
-        path: path.resolve(__dirname, 'dist/builds/terminal')
-    },
-    module: {
-        rules: [
-            {
-                test: /\.ts$/,
-                use: 'ts-loader',
-                exclude: /node_modules/,
-            },
-        ],
-    },
-    resolve: {
-        extensions: ['.ts', '.js']
-    },
-    mode: 'production'
-};
 
 const terminalMode = {
     name: 'terminalConfig',
-    entry: './src/app/app.ts',
+    entry: './src/index.ts',
     target: "node",
     output: {
         filename: 'build.terminal.js',
@@ -82,5 +60,5 @@ const terminalMode = {
 
 module.exports = [
     webMode,
-    terminalMode,terminalModeLocalStorage
+    terminalMode
 ];
