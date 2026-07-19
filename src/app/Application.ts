@@ -1,4 +1,4 @@
-import type { view } from "../interfaces/view";
+import type { view } from "../ui/interfaces/view";
 
 export class Application {
     constructor(private _view: view) { }

@@ -1,12 +1,15 @@
 '../../services/inMemoryServices';
 
-import type { Client } from '../../types/clientModel';
-import type { Product } from '../../types/productModel';
-import type { Sell } from '../../types/sellModel';
-import { inMemoryServices } from '../../class/inMemoryServices';
+import type { Client } from '../../domain/entities/client';
+import type { Product } from '../../domain/entities/product';
+import type { Sell } from '../../domain/entities/sell';
+import { inMemoryServices } from '../../infrastructure/persistence/inMemoryServices';
 import dotenv from 'dotenv';
 import promptSync from 'prompt-sync';
-import type { CRUDF } from '../../interfaces/CRUDF';
+import type { productRepository } from '../../domain/repositories/productRepository';
+import type { clientRepository } from '../../domain/repositories/clientRepository';
+import type { sellRepository } from '../../domain/repositories/sellRepository';
+
 
 const prompt = promptSync();
 
@@ -15,9 +18,9 @@ dotenv.config({ path: envKey });
 
 export class View {
     constructor(
-        private inMemoryServiceProducts: CRUDF,
-        private inMemoryServiceClient: CRUDF,
-        private inMemoryServiceSell: CRUDF,
+        private inMemoryServiceProducts: productRepository,
+        private inMemoryServiceClient: clientRepository,
+        private inMemoryServiceSell: sellRepository,
     ) { }
 
     initMensaje(): void {
@@ -104,6 +107,7 @@ export class View {
         console.table(this.inMemoryServiceClient.read<Client>());
     }
 
+
     showClients(): void {
         console.log('--- Lista de clientes ---');
         console.table(this.inMemoryServiceClient.read<Client>());
@@ -132,8 +136,6 @@ export class View {
 
         console.table(this.inMemoryServiceProducts.read());
     }
-
-
 
     valideId(id: number, data: inMemoryServices<Client>) {
         const tempBase = data.read<Client>();

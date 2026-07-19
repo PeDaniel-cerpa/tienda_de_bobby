@@ -2,8 +2,6 @@
 
 Este es un proyecto enfocado en construir una solución de gestión de inventario y ventas para una tienda de barrio. Está desarrollado utilizando **TypeScript** y **Node.js**, aplicando Programación Orientada a Objetos (**POO**) y los principios **SOLID**.
 
-Esta app cuenta con vista web y vista en terminal, esta ultima permite guardar los datos de clientes y productos en su version con localStorage.
-
 ---
 
 ## Características
@@ -89,12 +87,6 @@ npm run build:web
 npm run build:terminal
 ```
 
-**para compilar la version con persistencia local**
-
-```bash
-npm run build:terminal:localStorage
-```
-
 ## Ejecucion de la app
 
 Una vez realizado el paso anterior puedes ejecutar la tienda con los siguientes comandos:
@@ -105,12 +97,6 @@ para ejecutar la version en **terminal** ejecuta:
 
 ```bash
 npm run go:terminal
-```
-
-para ejecutar la version con persistencia local ejecuta:
-
-```bash
-npm run go:terminal:localStorage
 ```
 
 **Version Web**
@@ -176,21 +162,4 @@ tienda_de_bobby/
 ├── tsconfig.json                # Configuración de TypeScript
 └── webpack.config.js            # Configuración de Webpack
 
-```
-## Capturas version en terminal
 
-**Menu version en Terminal**
-
-<img src="./src/assets/images/menuAppTerminal.png" alt="Menu version en terminal" width="600">
-
-
-**Opciones de la tienda**
-
-<img src="./src/assets/images/addClient.png" alt="opcion agregar clientes" width="600">
-
-
-## Capturas version web
-
-**Pagina principal**
-
-<img src="./src/assets/images/webPage.png" alt="opcion agregar clientes" width="600">
