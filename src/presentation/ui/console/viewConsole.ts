@@ -1,12 +1,11 @@
-'../../services/inMemoryServices';
 
-import type { Client } from '../../types/clientModel';
-import type { Product } from '../../types/productModel';
-import type { Sell } from '../../types/sellModel';
-import { inMemoryServices } from '../../class/inMemoryServices';
 import dotenv from 'dotenv';
 import promptSync from 'prompt-sync';
-import type { CRUDF } from '../../interfaces/CRUDF';
+import type { Client } from '../../../domain/models/client';
+import type { CRUDF } from '../../../domain/interfaces/CRUDF';
+import type { Product } from '../../../domain/models/product';
+import type { Sell } from '../../../domain/models/sell';
+import type { inMemoryServices } from '../../../infrastructure/persistence/inMemoryServices';
 
 const prompt = promptSync();
 

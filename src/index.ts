@@ -1,2 +1,2 @@
-import app from './app/app';
+import app from './infrastructure/config/app';
 app.start();
