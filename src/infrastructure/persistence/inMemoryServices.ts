@@ -1,4 +1,4 @@
-import type { CRUDF } from "../../domain/repositories/CRUDF";
+import type { CRUDF } from "../../domain/interfaces/CRUDF";
 
 export class inMemoryServices<T> implements CRUDF {
     private inMemoryDataBase: Array<any> = [];
