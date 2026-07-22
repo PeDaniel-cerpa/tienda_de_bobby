@@ -1,5 +1,5 @@
 import type { Client } from "../../domain/models/client";
-import { Application } from "../../application/Application";
+import { Application } from "../../application/services/Application";
 import type { Product } from "../../domain/models/product";
 import type { Sell } from "../../domain/models/sell";
 import { inMemoryServices } from "../persistence/inMemoryServices";

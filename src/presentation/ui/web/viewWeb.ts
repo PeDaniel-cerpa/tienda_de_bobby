@@ -7,9 +7,9 @@ export class ViewWeb {
         private inMemoryServiceSell: CRUDF,
     ) { }
 
-    initMensaje(): void { }
+    initMensaje(): void {};
 
-    buildMenuApp(): void { }
+    buildMenuApp(): void {};
 
-    processOptionSelected(option: string): void { }
+    processOptionSelected(option: string): void {};
 }

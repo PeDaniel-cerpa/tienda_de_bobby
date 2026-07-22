@@ -1,2 +1,3 @@
-import app from './infrastructure/config/app';
+import app from "./infrastructure/components/app";
+
 app.start();

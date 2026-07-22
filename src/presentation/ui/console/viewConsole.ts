@@ -1,4 +1,3 @@
-
 import dotenv from 'dotenv';
 import promptSync from 'prompt-sync';
 import type { Client } from '../../../domain/models/client';
@@ -6,6 +5,7 @@ import type { CRUDF } from '../../../domain/interfaces/CRUDF';
 import type { Product } from '../../../domain/models/product';
 import type { Sell } from '../../../domain/models/sell';
 import type { inMemoryServices } from '../../../infrastructure/persistence/inMemoryServices';
+
 
 const prompt = promptSync();
 
@@ -16,7 +16,7 @@ export class View {
     constructor(
         private inMemoryServiceProducts: CRUDF,
         private inMemoryServiceClient: CRUDF,
-        private inMemoryServiceSell: CRUDF,
+        private inMemoryServiceSell: CRUDF
     ) { }
 
     initMensaje(): void {
@@ -131,8 +131,6 @@ export class View {
 
         console.table(this.inMemoryServiceProducts.read());
     }
-
-
 
     valideId(id: number, data: inMemoryServices<Client>) {
         const tempBase = data.read<Client>();
