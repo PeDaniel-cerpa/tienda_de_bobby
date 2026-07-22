@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import type { CRUDF } from "../../domain/repositories/CRUDF";
 =======
 import type { CRUDF } from '../../domain/interfaces/CRUDF';
 >>>>>>> fix-directories
+=======
+import type { CRUDF } from "../../domain/interfaces/CRUDF";
+>>>>>>> 3d1f1959cc46f9e599288ea5b4a3fa7f9ea5bcbc
 
 export class inMemoryServices<T> implements CRUDF {
     private inMemoryDataBase: Array<any> = [];

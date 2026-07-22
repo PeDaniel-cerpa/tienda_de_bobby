@@ -1,25 +1,30 @@
+<<<<<<< HEAD
 <<<<<<< HEAD:src/ui/console/viewConsole.ts
 '../../services/inMemoryServices';
+=======
+>>>>>>> 3d1f1959cc46f9e599288ea5b4a3fa7f9ea5bcbc
 
-import type { Client } from '../../domain/entities/client';
-import type { Product } from '../../domain/entities/product';
-import type { Sell } from '../../domain/entities/sell';
-import { inMemoryServices } from '../../infrastructure/persistence/inMemoryServices';
 import dotenv from 'dotenv';
 import promptSync from 'prompt-sync';
+<<<<<<< HEAD
 import type { productRepository } from '../../domain/repositories/productRepository';
 import type { clientRepository } from '../../domain/repositories/clientRepository';
 import type { sellRepository } from '../../domain/repositories/sellRepository';
 =======
 import dotenv from 'dotenv';
 import promptSync from 'prompt-sync';
+=======
+>>>>>>> 3d1f1959cc46f9e599288ea5b4a3fa7f9ea5bcbc
 import type { Client } from '../../../domain/models/client';
 import type { CRUDF } from '../../../domain/interfaces/CRUDF';
 import type { Product } from '../../../domain/models/product';
 import type { Sell } from '../../../domain/models/sell';
 import type { inMemoryServices } from '../../../infrastructure/persistence/inMemoryServices';
+<<<<<<< HEAD
 >>>>>>> fix-directories:src/presentation/ui/console/viewConsole.ts
 
+=======
+>>>>>>> 3d1f1959cc46f9e599288ea5b4a3fa7f9ea5bcbc
 
 const prompt = promptSync();
 
@@ -28,6 +33,7 @@ dotenv.config({ path: envKey });
 
 export class View {
     constructor(
+<<<<<<< HEAD
 <<<<<<< HEAD:src/ui/console/viewConsole.ts
         private inMemoryServiceProducts: productRepository,
         private inMemoryServiceClient: clientRepository,
@@ -37,6 +43,11 @@ export class View {
         private inMemoryServiceClient: CRUDF,
         private inMemoryServiceSell: CRUDF
 >>>>>>> fix-directories:src/presentation/ui/console/viewConsole.ts
+=======
+        private inMemoryServiceProducts: CRUDF,
+        private inMemoryServiceClient: CRUDF,
+        private inMemoryServiceSell: CRUDF,
+>>>>>>> 3d1f1959cc46f9e599288ea5b4a3fa7f9ea5bcbc
     ) { }
 
     initMensaje(): void {
@@ -123,7 +134,6 @@ export class View {
         console.table(this.inMemoryServiceClient.read<Client>());
     }
 
-
     showClients(): void {
         console.log('--- Lista de clientes ---');
         console.table(this.inMemoryServiceClient.read<Client>());
@@ -152,6 +162,8 @@ export class View {
 
         console.table(this.inMemoryServiceProducts.read());
     }
+
+
 
     valideId(id: number, data: inMemoryServices<Client>) {
         const tempBase = data.read<Client>();
