@@ -1,3 +1,4 @@
+<<<<<<< HEAD:src/ui/console/viewConsole.ts
 '../../services/inMemoryServices';
 
 import type { Client } from '../../domain/entities/client';
@@ -9,6 +10,15 @@ import promptSync from 'prompt-sync';
 import type { productRepository } from '../../domain/repositories/productRepository';
 import type { clientRepository } from '../../domain/repositories/clientRepository';
 import type { sellRepository } from '../../domain/repositories/sellRepository';
+=======
+import dotenv from 'dotenv';
+import promptSync from 'prompt-sync';
+import type { Client } from '../../../domain/models/client';
+import type { CRUDF } from '../../../domain/interfaces/CRUDF';
+import type { Product } from '../../../domain/models/product';
+import type { Sell } from '../../../domain/models/sell';
+import type { inMemoryServices } from '../../../infrastructure/persistence/inMemoryServices';
+>>>>>>> fix-directories:src/presentation/ui/console/viewConsole.ts
 
 
 const prompt = promptSync();
@@ -18,9 +28,15 @@ dotenv.config({ path: envKey });
 
 export class View {
     constructor(
+<<<<<<< HEAD:src/ui/console/viewConsole.ts
         private inMemoryServiceProducts: productRepository,
         private inMemoryServiceClient: clientRepository,
         private inMemoryServiceSell: sellRepository,
+=======
+        private inMemoryServiceProducts: CRUDF,
+        private inMemoryServiceClient: CRUDF,
+        private inMemoryServiceSell: CRUDF
+>>>>>>> fix-directories:src/presentation/ui/console/viewConsole.ts
     ) { }
 
     initMensaje(): void {

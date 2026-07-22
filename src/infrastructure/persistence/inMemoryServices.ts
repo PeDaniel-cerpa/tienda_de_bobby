@@ -1,10 +1,14 @@
+<<<<<<< HEAD
 import type { CRUDF } from "../../domain/repositories/CRUDF";
+=======
+import type { CRUDF } from '../../domain/interfaces/CRUDF';
+>>>>>>> fix-directories
 
 export class inMemoryServices<T> implements CRUDF {
     private inMemoryDataBase: Array<any> = [];
 
     create<T>(payload: T): boolean {
-        return this.inMemoryDataBase.push(payload) > 0;
+        return this.inMemoryDataBase.push(payload) > 0
     }
 
     read<T>(): Array<T> {
@@ -14,7 +18,7 @@ export class inMemoryServices<T> implements CRUDF {
     update<T>(id: number, data: T): boolean {
         let status = true;
         let indexResult = this.inMemoryDataBase.findIndex(
-            (value: any) => value.id === id,
+            (value: any) => value.id === id
         );
 
         if (indexResult === -1) {
@@ -28,7 +32,7 @@ export class inMemoryServices<T> implements CRUDF {
     delete(id: number): boolean {
         let status = true;
         let indexResult = this.inMemoryDataBase.findIndex(
-            (value: any) => value.id === id,
+            (value: any) => value.id === id
         );
 
         if (indexResult === -1) {
@@ -42,7 +46,7 @@ export class inMemoryServices<T> implements CRUDF {
 
     findById<T>(id: number): number {
         let indexResult = this.inMemoryDataBase.findIndex(
-            (value) => value.id === id,
+            (value) => value.id === id
         );
         return indexResult;
     }
