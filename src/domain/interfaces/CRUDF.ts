@@ -1,5 +1,5 @@
 import type { CRUD } from "./CRUD";
 
-export interface CRUDF extends CRUD {
-    findById(id: number): number;
+export interface CRUDF<T> extends CRUD<T> {
+    findById(id: number): T | undefined;
 }

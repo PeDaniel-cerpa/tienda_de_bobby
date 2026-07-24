@@ -1,49 +1,44 @@
-import type { CRUDF } from '../../domain/interfaces/CRUDF';
+import type { CRUD } from '../../domain/interfaces/CRUD';
 
-export class inMemoryServices<T> implements CRUDF {
-    private inMemoryDataBase: Array<any> = [];
+export class inMemoryServices<T extends { id: number }> implements CRUD<T> {
+    private inMemoryDataBase: Array<T> = [];
 
-    create<T>(payload: T): boolean {
-        return this.inMemoryDataBase.push(payload) > 0
+    create(payload: T): boolean {
+        this.inMemoryDataBase.push(payload);
+        return true;
     }
 
-    read<T>(): Array<T> {
-        return this.inMemoryDataBase;
+    read(): Array<T> {
+        return [...this.inMemoryDataBase];
     }
 
-    update<T>(id: number, data: T): boolean {
-        let status = true;
-        let indexResult = this.inMemoryDataBase.findIndex(
-            (value: any) => value.id === id
+    update(id: number, data: T): boolean {
+        const indexResult = this.inMemoryDataBase.findIndex(
+            (value: T) => value.id === id
         );
 
         if (indexResult === -1) {
-            status = false;
-        } else {
-            this.inMemoryDataBase[indexResult] = data;
+            return false;
         }
-        return status;
+
+        this.inMemoryDataBase[indexResult] = data;
+        return true;
     }
 
     delete(id: number): boolean {
-        let status = true;
-        let indexResult = this.inMemoryDataBase.findIndex(
-            (value: any) => value.id === id
+        const indexResult = this.inMemoryDataBase.findIndex(
+            (value: T) => value.id === id
         );
 
         if (indexResult === -1) {
-            status = false;
-        } else {
-            this.inMemoryDataBase.splice(indexResult, 1);
+            return false;
         }
 
-        return status;
+        this.inMemoryDataBase.splice(indexResult, 1);
+        return true;
     }
 
-    findById<T>(id: number): number {
-        let indexResult = this.inMemoryDataBase.findIndex(
-            (value) => value.id === id
-        );
-        return indexResult;
+    findById(id: number): T | undefined {
+        return this.inMemoryDataBase.find((value: T) => value.id === id);
     }
 }
