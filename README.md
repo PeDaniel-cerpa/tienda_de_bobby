@@ -2,7 +2,6 @@
 
 Este es un proyecto enfocado en construir una solución de gestión de inventario y ventas para una tienda de barrio. Está desarrollado utilizando **TypeScript** y **Node.js**, aplicando Programación Orientada a Objetos (**POO**) y los principios **SOLID**.
 
-Esta app cuenta con vista web y vista en terminal, esta ultima permite guardar los datos de clientes y productos en su version con localStorage.
 
 ---
 
@@ -89,12 +88,6 @@ npm run build:web
 npm run build:terminal
 ```
 
-**para compilar la version con persistencia local**
-
-```bash
-npm run build:terminal:localStorage
-```
-
 ## Ejecucion de la app
 
 Una vez realizado el paso anterior puedes ejecutar la tienda con los siguientes comandos:
@@ -107,12 +100,6 @@ para ejecutar la version en **terminal** ejecuta:
 npm run go:terminal
 ```
 
-para ejecutar la version con persistencia local ejecuta:
-
-```bash
-npm run go:terminal:localStorage
-```
-
 **Version Web**
 
 para ejecutar la version **web** ejecuta:
@@ -120,77 +107,3 @@ para ejecutar la version **web** ejecuta:
 ```bash
 npm run go:web
 ```
-### Estructura del protecto
-```bash
-tienda_de_bobby/
-├── src/                         # Código fuente principal
-│   ├── app/                     # Entradas de la aplicación
-│   │   ├── app.ts               # Entrada terminal
-│   │   ├── appLocalStorage.ts   # Entrada terminal con node-localstorage
-│   │   └── appWeb.ts            # Entrada web
-│   │
-│   ├── assets/                  # Recursos estáticos
-│   │   └── images/              # Imágenes usadas en la app
-│   │       ├── addClient.png
-│   │       ├── menuAppTerminal.png
-│   │       └── webPage.png
-│   │
-│   ├── class/                   # Servicios y lógica de negocio
-│   │   ├── Aplication.ts
-│   │   ├── aplicationBuilderService.ts
-│   │   ├── inLocalStorageService.ts
-│   │   ├── inMemoryServices.ts
-│   │   ├── view.ts
-│   │   └── viewWeb.ts
-│   │
-│   ├── interfaces/              # Interfaces y CRUD
-│   │   ├── CRUD.ts
-│   │   ├── CRUDF.ts
-│   │   ├── aplicationBuilder.ts
-│   │   ├── inMemoryServiceClient.ts
-│   │   ├── inMemoryServicesProduct.ts
-│   │   └── inMemoryServicesSell.ts
-│   │
-│   ├── types/                   # Modelos tipados
-│   │   ├── clientModel.ts
-│   │   ├── productModel.ts
-│   │   └── sellModel.ts
-│   │
-│   ├── index.html               # Plantilla HTML para la versión web
-│   └── index.ts                 # Punto de entrada común
-│
-├── dist/                        # Carpeta de salida de builds (generada)
-│   ├── builds/
-│   │   ├── browser/             # Compilación para navegador
-│   │   │   └── build.browser.js
-│   │   └── terminal/            # Compilaciones para terminal
-│   │       ├── build.terminal.js
-│   │       └── build.terminal.local.js
-│
-├── .editorconfig                # Configuración de estilo de código
-├── .env.example                # archivo ejemplo de las variables de entorno 
-├── .gitignore                   # Archivos ignorados por Git
-├── README.md                    # Documentación del proyecto
-├── package.json                 # Dependencias y scripts
-├── package-lock.json            # Bloqueo de dependencias
-├── tsconfig.json                # Configuración de TypeScript
-└── webpack.config.js            # Configuración de Webpack
-
-```
-## Capturas version en terminal
-
-**Menu version en Terminal**
-
-<img src="./src/assets/images/menuAppTerminal.png" alt="Menu version en terminal" width="600">
-
-
-**Opciones de la tienda**
-
-<img src="./src/assets/images/addClient.png" alt="opcion agregar clientes" width="600">
-
-
-## Capturas version web
-
-**Pagina principal**
-
-<img src="./src/assets/images/webPage.png" alt="opcion agregar clientes" width="600">
