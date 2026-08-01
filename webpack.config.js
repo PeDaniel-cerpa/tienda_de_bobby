@@ -20,6 +20,9 @@ const webMode = {
     },
     resolve: {
         extensions: ['.ts', '.js'],
+        alias: {
+            '@': path.resolve(__dirname, 'src')
+        },
         fallback: { "fs": false, "path": false }
     },
     plugins: [new HtmlWebpackPlugin({
@@ -53,7 +56,10 @@ const terminalMode = {
         ],
     },
     resolve: {
-        extensions: ['.ts', '.js']
+        extensions: ['.ts', '.js'],
+        alias: {
+            '@': path.resolve(__dirname, 'src')
+        }
     },
     mode: 'production'
 };

@@ -1,18 +1,24 @@
-import type { CRUD } from '../../domain/interfaces/CRUD';
+import { IRepository } from "@/domain/interfaces/IRepository";
 
-export class inMemoryServices<T extends { id: number }> implements CRUD<T> {
+export class InMemoryRepository<T extends { id: number }> implements IRepository<T> {
     private inMemoryDataBase: Array<T> = [];
+    private nextId = 1;
 
-    create(payload: T): boolean {
-        this.inMemoryDataBase.push(payload);
-        return true;
+    create(payload: Omit<T, 'id'> & { id?: number }): T {
+        const id = payload.id ?? this.nextId++;
+        if (id >= this.nextId) {
+            this.nextId = id + 1;
+        }
+        const newItem = { ...payload, id } as T;
+        this.inMemoryDataBase.push(newItem);
+        return newItem;
     }
 
     read(): Array<T> {
         return [...this.inMemoryDataBase];
     }
 
-    update(id: number, data: T): boolean {
+    update(id: number, data: Partial<T>): boolean {
         const indexResult = this.inMemoryDataBase.findIndex(
             (value: T) => value.id === id
         );
@@ -21,7 +27,11 @@ export class inMemoryServices<T extends { id: number }> implements CRUD<T> {
             return false;
         }
 
-        this.inMemoryDataBase[indexResult] = data;
+        this.inMemoryDataBase[indexResult] = Object.assign(
+            {},
+            this.inMemoryDataBase[indexResult],
+            data
+        );
         return true;
     }
 

@@ -1,5 +1,5 @@
-import type { Product } from '../models/product';
-import type { CRUDF } from './CRUDF';
+import type { Product } from '@/domain/models/product.js';
+import type { IRepository } from '@/domain/interfaces/IRepository.js';
 
-export interface IProductRepository extends CRUDF<Product> {}
+export interface IProductRepository extends IRepository<Product> {}
 

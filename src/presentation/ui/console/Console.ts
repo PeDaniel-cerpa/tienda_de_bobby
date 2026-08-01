@@ -1,25 +1,24 @@
+import type { IClientService } from '@/application/interfaces/IClientService.js';
+import type { IProductService } from '@/application/interfaces/IProductService.js';
+import type { ISellService } from '@/application/interfaces/ISellService.js';
 import dotenv from 'dotenv';
 import promptSync from 'prompt-sync';
-import type { IView } from '../../../domain/interfaces/IView';
-import type { ClientUseCases } from '../../../application/useCases/ClientUseCases';
-import type { ProductUseCases } from '../../../application/useCases/ProductUseCases';
-import type { SellUseCases } from '../../../application/useCases/SellUseCases';
 
 const prompt = promptSync();
 
 const envKey = `.env.${process.env.NODE_ENV || 'local'}`;
 dotenv.config({ path: envKey });
 
-export class ViewConsole implements IView {
+export class ViewConsole {
     constructor(
-        private clientUseCases: ClientUseCases,
-        private productUseCases: ProductUseCases,
-        private sellUseCases: SellUseCases
-    ) { }
+        private clientService: IClientService,
+        private productService: IProductService,
+        private sellService: ISellService
+    ) {}
 
-    initMensaje(): void {
+    startMessagge(): void {
         let mesagge: string =
-            'Bienvenido a la tienda de Booby \n' +
+            'Bienvenido a la tienda de Bobby \n' +
             '-----------------------------------------------\n' +
             `Conectado al puerto: ${process.env.PORT || 'N/A'}\n` +
             `Modo de ejecución: ${process.env.NODE_ENV || 'local'}\n` +
@@ -75,44 +74,48 @@ export class ViewConsole implements IView {
     }
 
     createClient(): void {
-        const idClient = Number(prompt('Ingrese el id del cliente: '));
+        const idInput = prompt('Ingrese el ID del cliente (opcional, Enter para autogenerar): ');
+        const idClient = idInput.trim() !== '' ? Number(idInput) : undefined;
         const nameClient = prompt('Ingrese el nombre del cliente: ');
 
-        const created = this.clientUseCases.createClient(idClient, nameClient);
-        if (created) {
-            console.log('Cliente registrado exitosamente');
+        const result = this.clientService.createClient(nameClient, idClient);
+        if (result.success && result.client) {
+            console.log(`Cliente registrado exitosamente con ID ${result.client.id}`);
         } else {
-            console.log('Error: Ya existe un cliente con ese ID');
+            console.log('Error al registrar cliente:');
+            result.errors?.forEach(err => console.log(` - ${err}`));
         }
 
-        console.table(this.clientUseCases.getClients());
+        console.table(this.clientService.getClients());
     }
 
     showClients(): void {
         console.log('--- Lista de clientes ---');
-        console.table(this.clientUseCases.getClients());
+        console.table(this.clientService.getClients());
     }
 
     createProduct(): void {
-        const idProduct = Number(prompt('Ingrese el id del producto: '));
+        const idInput = prompt('Ingrese el ID del producto (opcional, Enter para autogenerar): ');
+        const idProduct = idInput.trim() !== '' ? Number(idInput) : undefined;
         const nameProduct = prompt('Ingrese el nombre del producto: ');
         const stockProduct = Number(prompt('Ingrese la cantidad del producto: '));
         const priceProduct = Number(prompt('Ingrese el precio del producto: '));
 
-        const created = this.productUseCases.createProduct(idProduct, nameProduct, stockProduct, priceProduct);
+        const result = this.productService.createProduct(nameProduct, stockProduct, priceProduct, idProduct);
 
-        if (created) {
-            console.log('Producto registrado exitosamente');
+        if (result.success && result.product) {
+            console.log(`Producto registrado exitosamente con ID ${result.product.id}`);
         } else {
-            console.log('Error: Ya existe un producto con ese ID');
+            console.log('Error al registrar producto:');
+            result.errors?.forEach(err => console.log(` - ${err}`));
         }
 
-        console.table(this.productUseCases.getProducts());
+        console.table(this.productService.getProducts());
     }
 
     showProducts(): void {
         console.log('--- Lista de productos ---');
-        console.table(this.productUseCases.getProducts());
+        console.table(this.productService.getProducts());
     }
 
     createSell(): void {
@@ -120,7 +123,7 @@ export class ViewConsole implements IView {
         const idProduct = Number(prompt('Ingrese el id del producto: '));
         const quantity = Number(prompt('Ingrese la cantidad a comprar: '));
 
-        const result = this.sellUseCases.createSale(idClient, idProduct, quantity);
+        const result = this.sellService.createSale(idClient, idProduct, quantity);
 
         if (result.success && result.sale) {
             console.log('----------------------------');
@@ -130,10 +133,27 @@ export class ViewConsole implements IView {
             console.log(`Producto: ${result.sale.product.name}`);
             console.log(`Cantidad: ${result.sale.quantity}`);
             console.log(`Valor a pagar: $ ${result.sale.total}`);
+            console.log(`Cantidad disponible de ${result.sale.product.name} = ${result.sale.product.stock}`);
             console.log('----------------------------');
-            console.table(this.sellUseCases.getSales());
+            console.table(this.sellService.getSales());
         } else {
-            console.log(`Error al procesar la venta: ${result.message}`);
+            switch (result.status) {
+                case 'INVALID_INPUT':
+                    console.log('Error de validación al procesar la venta:');
+                    result.errors?.forEach(err => console.log(` - ${err}`));
+                    break;
+                case 'CLIENT_NOT_FOUND':
+                    console.log(`Error al procesar la venta: Cliente con ID ${idClient} no encontrado`);
+                    break;
+                case 'PRODUCT_NOT_FOUND':
+                    console.log(`Error al procesar la venta: Producto con ID ${idProduct} no encontrado`);
+                    break;
+                case 'INSUFFICIENT_STOCK':
+                    console.log('Error al procesar la venta: Cantidad solicitada excede el stock disponible');
+                    break;
+                default:
+                    console.log('Error al procesar la venta.');
+            }
         }
     }
 }
