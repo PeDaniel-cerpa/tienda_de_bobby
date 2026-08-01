@@ -1,4 +1,4 @@
-import { ProcessSaleStatus } from "@/application/types/sale/processSaleStatus";
+import { ProcessSaleStatus } from "@/application/services-results/sale/processSaleStatus";
 import { Sale } from "@/domain/models/sale";
 
 export type ProcessSaleResult = {

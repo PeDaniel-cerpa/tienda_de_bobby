@@ -1,4 +1,4 @@
-import { ValidationResult } from "@/application/types/validator/validatorResult";
+import { ValidationResult } from "@/application/services-results/validator/validatorResult";
 
 export class ClientValidator {
     static validate(name: string, id?: number): ValidationResult {

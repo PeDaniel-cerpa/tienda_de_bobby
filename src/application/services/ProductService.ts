@@ -1,5 +1,5 @@
 import { IProductService } from "@/application/interfaces/IProductService";
-import { ProductCreateResult } from "@/application/types/product/productCreateResult";
+import { ProductCreateResult } from "@/application/services-results/product/productCreateResult";
 import { ProductValidator } from "@/application/validators/ProductValidator";
 import { IProductRepository } from "@/domain/interfaces/IProductRepository";
 import { Product } from "@/domain/models/product";

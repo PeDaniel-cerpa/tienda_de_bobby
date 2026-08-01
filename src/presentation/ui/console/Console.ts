@@ -9,22 +9,22 @@ const prompt = promptSync();
 const envKey = `.env.${process.env.NODE_ENV || 'local'}`;
 dotenv.config({ path: envKey });
 
-export class ViewConsole {
+export class ConsoleView {
     constructor(
         private clientService: IClientService,
         private productService: IProductService,
         private sellService: ISellService
     ) {}
 
-    startMessagge(): void {
-        let mesagge: string =
+    startMessage(): void {
+        let message: string =
             'Bienvenido a la tienda de Bobby \n' +
             '-----------------------------------------------\n' +
             `Conectado al puerto: ${process.env.PORT || 'N/A'}\n` +
             `Modo de ejecución: ${process.env.NODE_ENV || 'local'}\n` +
             '-----------------------------------------------\n' +
             'Ahora sin promesas!!!\n';
-        console.log(mesagge);
+        console.log(message);
         this.buildMenuApp();
     }
 
@@ -158,4 +158,4 @@ export class ViewConsole {
     }
 }
 
-export { ViewConsole as View };
+export { ConsoleView as View };

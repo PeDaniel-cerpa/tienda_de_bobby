@@ -1,5 +1,5 @@
 import { ISellService } from "@/application/interfaces/ISellService";
-import { ProcessSaleResult } from "@/application/types/sale/processSaleResult";
+import { ProcessSaleResult } from "@/application/services-results/sale/processSaleResult";
 import { SellValidator } from "@/application/validators/SellValidator";
 import { IClientRepository } from "@/domain/interfaces/IClientRepository";
 import { IProductRepository } from "@/domain/interfaces/IProductRepository";

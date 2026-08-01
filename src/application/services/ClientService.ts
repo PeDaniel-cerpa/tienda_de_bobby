@@ -1,5 +1,5 @@
 import { IClientService } from "@/application/interfaces/IClientService";
-import { ClientCreateResult } from "@/application/types/client/clientCreateResult";
+import { ClientCreateResult } from "@/application/services-results/client/clientCreateResult";
 import { ClientValidator } from "@/application/validators/ClientValidator";
 import { IClientRepository } from "@/domain/interfaces/IClientRepository";
 import { Client } from "@/domain/models/client";

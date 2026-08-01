@@ -1,4 +1,4 @@
-import { ClientCreateResult } from "@/application/types/client/clientCreateResult";
+import { ClientCreateResult } from "@/application/services-results/client/clientCreateResult";
 import { Client } from "@/domain/models/client";
 
 export interface IClientService {
