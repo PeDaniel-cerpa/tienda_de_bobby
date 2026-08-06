@@ -1,19 +1,23 @@
-import { ClientService } from "@/application/services/ClientService";
-import { ProductService } from "@/application/services/ProductService";
-import { SaleService } from "@/application/services/SaleService";
-import { ClientRepository } from "@/infrastructure/repositories/ClientRepository";
-import { ProductRepository } from "@/infrastructure/repositories/ProductRepository";
-import { SaleRepository } from "@/infrastructure/repositories/SaleRepository";
-import { ConsoleView } from "@/presentation/ui/console/Console";
+import { ClientServices } from '@/application/services/Client.services';
+import { ProductServices } from '@/application/services/Product.services';
+import { SaleServices } from '@/application/services/Sale.services';
+import { ClientValidator } from '@/application/validators/Client.validator';
+import { Client } from '@/domain/models/client.model';
+import { Product } from '@/domain/models/product.model';
+import { Sale } from '@/domain/models/sale.model';
+import { inMemoryServices } from '@/infrastructure/inMemoryServices';
+import { View } from '@/presentation/console/viewConsole';
 
-const clientRepository = new ClientRepository();
-const productRepository = new ProductRepository();
-const sellRepository = new SaleRepository();
+const peoductRepository = new inMemoryServices<Product>();
+const clientRepository = new inMemoryServices<Client>();
+const saleRepository = new inMemoryServices<Sale>();
 
-const clientService = new ClientService(clientRepository);
-const productService = new ProductService(productRepository);
-const sellService = new SaleService(clientRepository, productRepository, sellRepository);
+const clientValidator = new ClientValidator();
 
-const view = new ConsoleView(clientService, productService, sellService);
+const clientServices = new ClientServices(clientRepository);
+const productServices = new ProductServices(peoductRepository);
+const saleServices = new SaleServices(saleRepository);
 
-view.startMessage();
+const view = new View(productServices, clientServices, saleServices, clientValidator);
+
+view.initMensaje();

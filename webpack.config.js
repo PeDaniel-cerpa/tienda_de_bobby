@@ -26,7 +26,7 @@ const webMode = {
         fallback: { "fs": false, "path": false }
     },
     plugins: [new HtmlWebpackPlugin({
-        template: "./src/presentation/ui/web/index.html",
+        template: "./src/presentation/web/index.html",
         title: "tienda Bobby"
     })],
     externals: {
