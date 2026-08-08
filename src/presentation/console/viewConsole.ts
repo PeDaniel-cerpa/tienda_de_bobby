@@ -1,28 +1,27 @@
-import { IClientServices } from '@/domain/interfaces/IClient.services';
-import { IClientValidator } from '@/domain/interfaces/IClient.validator';
-import { IProductServices } from '@/domain/interfaces/IProduct.services';
-import { ISaleServices } from '@/domain/interfaces/ISale.services';
 import { Client } from '@/domain/models/client.model';
 import { Product } from '@/domain/models/product.model';
 import { Sale } from '@/domain/models/sale.model';
-import { inMemoryServices } from '@/infrastructure/inMemoryServices';
+import { IClientServices } from '@/domain/interfaces/IClient.services';
+import { IProductServices } from '@/domain/interfaces/IProduct.services';
+import { ISaleServices } from '@/domain/interfaces/ISale.services';
+import { MemoryRepository } from '@/infrastructure/Memory.repository';
 import dotenv from 'dotenv';
 import promptSync from 'prompt-sync';
+import { IView } from '@/domain/interfaces/IView';
 
 const prompt = promptSync();
 
 const envKey = `.env.${process.env.NODE_ENV || 'local'}`;
 dotenv.config({ path: envKey });
 
-export class View {
+export class View implements IView {
     constructor(
-        private productServices: IProductServices,
-        private clientServices: IClientServices,
-        private saleServices: ISaleServices,
-        private clientValidator: IClientValidator
+        private readonly productServices: IProductServices,
+        private readonly clientServices: IClientServices,
+        private readonly saleServices: ISaleServices
     ) {}
 
-    initMensaje(): void {
+    start(): void {
         let mesagge: string =
             'Bienvenido a la tienda de Booby \n' +
             '-----------------------------------------------\n' +
@@ -101,7 +100,6 @@ export class View {
         };
 
         try {
-            this.clientValidator.validate(dataClient);
             let clientTemp = this.clientServices.create(dataClient);
             console.log(`Cliente creado : id:${clientTemp.id} name:${clientTemp.name}`);
         } catch (error) {
@@ -110,7 +108,7 @@ export class View {
         }
     }
 
-    showClients(): void {
+    showClients(){
         console.log('--- Lista de clientes ---');
         console.table(this.clientServices.read());
     }
@@ -133,14 +131,19 @@ export class View {
             price: priceProdcut,
         };
 
-        if (this.productServices.create(dataProduct))
-            console.log('Producto registrado exitosamente');
+        try {
+            let productTemp = this.productServices.create(dataProduct);
+            console.log(`Producto creado : id:${productTemp.id} name:${productTemp.name}`);
+        } catch (error) {
+            console.log('Error al crear el producto');
+            console.log((error as Error).message);
+        }
 
         console.table(this.productServices.read());
     }
 
-    valideId(id: number, data: inMemoryServices<Client>) {
-        const tempBase = data.read<Client>();
+    valideId(id: number, data: MemoryRepository<Client>) {
+        const tempBase = data.read();
         const index = data.findById(id);
 
         if (id === -1) {
@@ -151,7 +154,7 @@ export class View {
         return tempBase[index];
     }
 
-    printSell(tempClient: Client, tempProduct: Product, stockSellProduct: any) {
+    showSale(tempClient: Client, tempProduct: Product, stockSellProduct: number) {
         let mesagge: string =
             '----------------------------\n' +
             'Venta realizada con exito\n' +
@@ -165,7 +168,7 @@ export class View {
         console.log(mesagge);
     }
 
-    valideStock(tempProduct: Product, stockSellProduct: any): boolean {
+    valideStock(tempProduct: Product, stockSellProduct: number): boolean {
         if (tempProduct.stock < stockSellProduct) {
             console.log(`Cantidad del producto no dispponible, stock actual ${tempProduct.stock}`);
             return false;
@@ -188,12 +191,13 @@ export class View {
             console.log('Cliente no encontrado');
             return;
         }
+
         const tempClient = temBaseClient[indexClient]!;
         console.log(`Cliente encontrado ${tempClient.name}`);
 
         let idProduct = Number(prompt('Ingrese el id del producto: '));
 
-        const tempBaseProduct = this.productServices.read();
+        const profuctFind = this.productServices.read();
         const indexProduct = this.productServices.findById!(idProduct);
 
         if (indexProduct === -1) {
@@ -201,7 +205,8 @@ export class View {
             return;
         }
 
-        const tempProduct = tempBaseProduct[indexProduct]!;
+        const tempProduct = profuctFind[indexProduct]!;
+
         console.log(`producto encontrado ${tempProduct.name}`);
 
         let stockSellProduct = Number(prompt('Ingrese la cantidad a comprar: '));
@@ -211,13 +216,17 @@ export class View {
         if (saleAllowed) {
             this.productServices.update!(tempProduct.id, tempProduct);
 
-            const tempSell: Sale = {
-                idClient: tempClient,
-                idProduct: tempProduct,
+            const dataSale: Sale = {
+                client: tempClient,
+                product: tempProduct,
             };
 
-            this.saleServices.create(tempSell);
-            this.printSell(tempClient, tempProduct, stockSellProduct);
+            try {
+                this.saleServices.create(dataSale);
+                this.showSale(tempClient, tempProduct, stockSellProduct);
+            } catch (error) {
+                console.log((error as Error).message);
+            }
         }
     }
 }

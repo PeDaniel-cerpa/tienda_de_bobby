@@ -1,13 +1,17 @@
-import { IProductRepository } from '@/domain/interfaces/IProduct.repository';
 import { IProductServices } from '@/domain/interfaces/IProduct.services';
+import { IProductValidator } from '@/domain/interfaces/IProduct.validator';
+import { IRepository } from '@/domain/interfaces/IRepository';
 import { Product } from '@/domain/models/product.model';
 
 export class ProductServices implements IProductServices {
-    constructor(private productRepository: IProductRepository) {}
+    constructor(
+        private readonly productRepository: IRepository<Product>,
+        private readonly productValidator: IProductValidator
+    ) {}
 
     create(payload: Product): Product {
-        this.productRepository.create(payload);
-        return payload;
+        this.productValidator.validate(payload);
+        return this.productRepository.create(payload);;
     }
 
     read(): Array<Product> {
@@ -15,8 +19,7 @@ export class ProductServices implements IProductServices {
     }
 
     update(id: number, payload: Product): boolean {
-        this.productRepository.update(id, payload);
-        return true;
+        return this.productRepository.update(id, payload);
     }
 
     findById(id: number): number {

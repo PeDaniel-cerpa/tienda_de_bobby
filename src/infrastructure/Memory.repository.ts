@@ -1,18 +1,18 @@
 import { IRepository } from '@/domain/interfaces/IRepository';
 
-export class inMemoryServices<T> implements IRepository {
+export class MemoryRepository<T> implements IRepository<T> {
     private inMemoryDataBase: Array<any> = [];
 
-    create<T>(payload: T): T {
+    create(payload: T): T {
         this.inMemoryDataBase.push(payload);
         return payload;
     }
 
-    read<T>(): Array<T> {
+    read(): Array<T> {
         return this.inMemoryDataBase;
     }
 
-    update<T>(id: number, data: T): boolean {
+    update(id: number, data: T): boolean {
         let status = true;
         let indexResult = this.inMemoryDataBase.findIndex((value: any) => value.id === id);
 
@@ -37,7 +37,7 @@ export class inMemoryServices<T> implements IRepository {
         return status;
     }
 
-    findById<T>(id: number): number {
+    findById(id: number): number {
         let indexResult = this.inMemoryDataBase.findIndex((value) => value.id === id);
         return indexResult;
     }

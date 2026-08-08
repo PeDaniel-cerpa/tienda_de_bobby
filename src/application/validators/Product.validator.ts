@@ -1,7 +1,7 @@
-import { IValidator } from '@/domain/interfaces/IValidator';
+import { IProductValidator } from '@/domain/interfaces/IProduct.validator';
 import { Product } from '@/domain/models/product.model';
 
-export class ProductValidator implements IValidator<Product> {
+export class ProductValidator implements IProductValidator {
     validate(payload: Product): void {
         if (!payload.name || payload.name.trim().length < 2) {
             throw new Error('El nombre del producto debe tener al menos 2 caracteres.');

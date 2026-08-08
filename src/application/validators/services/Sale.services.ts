@@ -1,13 +1,17 @@
-import { ISaleRepository } from '@/domain/interfaces/ISale.repository';
+import { IRepository } from '@/domain/interfaces/IRepository';
 import { ISaleServices } from '@/domain/interfaces/ISale.services';
+import { ISaleValidator } from '@/domain/interfaces/ISale.validator';
 import { Sale } from '@/domain/models/sale.model';
 
 export class SaleServices implements ISaleServices {
-    constructor(private saleRepository: ISaleRepository) {}
+    constructor(
+        private readonly saleRepository: IRepository<Sale>,
+        private readonly saleValidator: ISaleValidator
+    ) {}
 
     create(payload: Sale): Sale {
-        this.saleRepository.create(payload);
-        return payload;
+        this.saleValidator.validate(payload);
+        return this.saleRepository.create(payload);
     }
 
     read(): Array<Sale> {
@@ -15,8 +19,7 @@ export class SaleServices implements ISaleServices {
     }
 
     update(id: number, payload: Sale): boolean {
-        this.saleRepository.update(id, payload);
-        return true;
+        return this.saleRepository.update(id, payload);
     }
 
     findById(id: number): number {
