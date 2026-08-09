@@ -3,9 +3,9 @@ import { IRepository } from '@/domain/interfaces/IRepository';
 export class MemoryRepository<T> implements IRepository<T> {
     private inMemoryDataBase: Array<any> = [];
 
-    create(payload: T): T {
+    create(payload: T): boolean {
         this.inMemoryDataBase.push(payload);
-        return payload;
+        return true;
     }
 
     read(): Array<T> {

@@ -9,9 +9,9 @@ export class ClientServices implements IClientServices {
         private readonly clientValidator: IClientValidator
     ) {}
 
-    create(payload: Client): Client {
+    create(payload: Client): boolean {
         this.clientValidator.validate(payload);
-        return this.clientRepository.create(payload);
+        return true;
     }
 
     read(): Array<Client> {

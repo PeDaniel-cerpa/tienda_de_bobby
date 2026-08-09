@@ -9,9 +9,9 @@ export class SaleServices implements ISaleServices {
         private readonly saleValidator: ISaleValidator
     ) {}
 
-    create(payload: Sale): Sale {
+    create(payload: Sale): boolean {
         this.saleValidator.validate(payload);
-        return this.saleRepository.create(payload);
+        return true;
     }
 
     read(): Array<Sale> {

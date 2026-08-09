@@ -5,14 +5,10 @@ import { IClientServices } from '@/domain/interfaces/IClient.services';
 import { IProductServices } from '@/domain/interfaces/IProduct.services';
 import { ISaleServices } from '@/domain/interfaces/ISale.services';
 import { MemoryRepository } from '@/infrastructure/Memory.repository';
-import dotenv from 'dotenv';
 import promptSync from 'prompt-sync';
 import { IView } from '@/domain/interfaces/IView';
 
 const prompt = promptSync();
-
-const envKey = `.env.${process.env.NODE_ENV || 'local'}`;
-dotenv.config({ path: envKey });
 
 export class View implements IView {
     constructor(
@@ -24,9 +20,6 @@ export class View implements IView {
     start(): void {
         let mesagge: string =
             'Bienvenido a la tienda de Booby \n' +
-            '-----------------------------------------------\n' +
-            `Conectado al puerto: ${process.env.PORT}\n` +
-            `Modo de ejecución: ${process.env.NODE_ENV}\n` +
             '-----------------------------------------------\n' +
             'Ahora sin promesas!!!\n';
         console.log(mesagge);
@@ -101,14 +94,14 @@ export class View implements IView {
 
         try {
             let clientTemp = this.clientServices.create(dataClient);
-            console.log(`Cliente creado : id:${clientTemp.id} name:${clientTemp.name}`);
+            console.log(`Cliente creado : id:${dataClient.id} name:${dataClient.name}`);
         } catch (error) {
             console.log('Error al crear el cliente');
             console.log((error as Error).message);
         }
     }
 
-    showClients(){
+    showClients() {
         console.log('--- Lista de clientes ---');
         console.table(this.clientServices.read());
     }
@@ -133,7 +126,7 @@ export class View implements IView {
 
         try {
             let productTemp = this.productServices.create(dataProduct);
-            console.log(`Producto creado : id:${productTemp.id} name:${productTemp.name}`);
+            console.log(`Producto creado : id:${dataProduct.id} name:${dataProduct.name}`);
         } catch (error) {
             console.log('Error al crear el producto');
             console.log((error as Error).message);
