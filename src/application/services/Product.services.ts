@@ -11,7 +11,7 @@ export class ProductServices implements IProductServices {
 
     create(payload: Product): boolean {
         this.productValidator.validate(payload);
-        return true;
+        return this.productRepository.create(payload);
     }
 
     read(): Array<Product> {
