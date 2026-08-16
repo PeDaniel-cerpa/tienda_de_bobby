@@ -107,3 +107,9 @@ para ejecutar la version **web** ejecuta:
 ```bash
 npm run go:web
 ```
+
+Credenciales para el login
+
+user: boby
+
+pass: admin

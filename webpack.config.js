@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const webMode = {
     name: 'browserConfig',
@@ -25,10 +26,20 @@ const webMode = {
         },
         fallback: { "fs": false, "path": false }
     },
-    plugins: [new HtmlWebpackPlugin({
-        template: "./src/presentation/web/index.html",
-        title: "tienda Bobby"
-    })],
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: "./src/presentation/web/index.html",
+            title: "tienda Bobby"
+        }),
+        new CopyWebpackPlugin({
+            patterns: [
+                {
+                    from: path.resolve(__dirname, 'src/presentation/shared'),
+                    to: path.resolve(__dirname, 'dist/builds/browser/shared')
+                }
+            ]
+        })
+    ],
     externals: {
         'scanf': '{}',
         'node-localstorage': '{}',

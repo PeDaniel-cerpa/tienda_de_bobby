@@ -93,7 +93,7 @@ export class View implements IView {
         };
 
         try {
-            let clientTemp = this.clientServices.create(dataClient);
+            this.clientServices.create(dataClient);
             console.log(`Cliente creado : id:${dataClient.id} name:${dataClient.name}`);
         } catch (error) {
             console.log('Error al crear el cliente');
@@ -125,7 +125,7 @@ export class View implements IView {
         };
 
         try {
-            let productTemp = this.productServices.create(dataProduct);
+            this.productServices.create(dataProduct);
             console.log(`Producto creado : id:${dataProduct.id} name:${dataProduct.name}`);
         } catch (error) {
             console.log('Error al crear el producto');

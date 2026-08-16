@@ -25,3 +25,4 @@ const saleServices = new SaleServices(saleRepository, saleValidator);
 const view = new View(productServices, clientServices, saleServices);
 
 view.start();
+
