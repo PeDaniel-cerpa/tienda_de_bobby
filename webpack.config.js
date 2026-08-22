@@ -36,6 +36,14 @@ const webMode = {
                 {
                     from: path.resolve(__dirname, 'src/presentation/shared'),
                     to: path.resolve(__dirname, 'dist/builds/browser/shared')
+                },
+                {
+                    from: path.resolve(__dirname, 'src/presentation/lib'),
+                    to: path.resolve(__dirname, 'dist/builds/browser/lib')
+                },
+                {
+                    from: path.resolve(__dirname, 'src/presentation/web/styles'),
+                    to: path.resolve(__dirname, 'dist/builds/browser/styles')
                 }
             ]
         })
