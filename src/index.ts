@@ -4,9 +4,9 @@ import { SaleServices } from '@/application/services/Sale.services';
 import { ClientValidator } from '@/application/validators/Client.validator';
 import { ProductValidator } from '@/application/validators/Product.validator';
 import { SaleValidator } from '@/application/validators/Sale.validator';
-import { Client } from '@/domain/models/client.model';
-import { Product } from '@/domain/models/product.model';
-import { Sale } from '@/domain/models/sale.model';
+import { Client } from '@/domain/entities/client.entity';
+import { Product } from '@/domain/entities/product.entity';
+import { Sale } from '@/domain/entities/sale.entity';
 import { MemoryRepository } from '@/infrastructure/Memory.repository';
 import { View } from '@/presentation/console/viewConsole';
 

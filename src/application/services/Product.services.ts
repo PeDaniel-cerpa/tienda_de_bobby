@@ -1,7 +1,7 @@
+import { Product } from '@/domain/entities/product.entity';
 import { IProductServices } from '@/domain/interfaces/IProduct.services';
 import { IProductValidator } from '@/domain/interfaces/IProduct.validator';
 import { IRepository } from '@/domain/interfaces/IRepository';
-import { Product } from '@/domain/models/product.model';
 
 export class ProductServices implements IProductServices {
     constructor(

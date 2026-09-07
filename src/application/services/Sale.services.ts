@@ -1,7 +1,7 @@
+import { Sale } from '@/domain/entities/sale.entity';
 import { IRepository } from '@/domain/interfaces/IRepository';
 import { ISaleServices } from '@/domain/interfaces/ISale.services';
 import { ISaleValidator } from '@/domain/interfaces/ISale.validator';
-import { Sale } from '@/domain/models/sale.model';
 
 export class SaleServices implements ISaleServices {
     constructor(

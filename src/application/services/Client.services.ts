@@ -1,7 +1,7 @@
 import { IClientValidator } from '@/domain/interfaces/IClient.validator';
 import { IClientServices } from '@/domain/interfaces/IClient.services';
-import { Client } from '@/domain/models/client.model';
 import { IRepository } from '@/domain/interfaces/IRepository';
+import { Client } from '@/domain/entities/client.entity';
 
 export class ClientServices implements IClientServices {
     constructor(

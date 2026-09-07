@@ -3,4 +3,5 @@ export interface ICRUD<T> {
     read(): Array<T>;
     update(id: number, data: T): boolean;
     delete(id: number): boolean;
+    getById(id: number): T | null;
 }

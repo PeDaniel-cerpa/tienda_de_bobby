@@ -1,5 +1,5 @@
+import { Client } from '@/domain/entities/client.entity';
 import { IClientValidator } from '@/domain/interfaces/IClient.validator';
-import { Client } from '@/domain/models/client.model';
 
 export class ClientValidator implements IClientValidator {
     validate(payload: Client): void {

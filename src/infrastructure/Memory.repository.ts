@@ -12,6 +12,10 @@ export class MemoryRepository<T> implements IRepository<T> {
         return this.inMemoryDataBase;
     }
 
+    getById(id: number): T | null {
+        return this.inMemoryDataBase.find((value: T) => (value as T & { id: number }).id === id) ?? null;
+    }
+
     update(id: number, data: T): boolean {
         let status = true;
         let indexResult = this.inMemoryDataBase.findIndex((value: any) => value.id === id);

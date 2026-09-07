@@ -1,6 +1,6 @@
-import { Client } from '@/domain/models/client.model';
-import { Product } from '@/domain/models/product.model';
-import { Sale } from '@/domain/models/sale.model';
+import { Client } from '@/domain/entities/client.entity';
+import { Product } from '@/domain/entities/product.entity';
+import { Sale } from '@/domain/entities/sale.entity';
 import { IClientServices } from '@/domain/interfaces/IClient.services';
 import { IProductServices } from '@/domain/interfaces/IProduct.services';
 import { ISaleServices } from '@/domain/interfaces/ISale.services';

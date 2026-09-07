@@ -1,5 +1,5 @@
+import { Sale } from '@/domain/entities/sale.entity';
 import { ISaleValidator } from '@/domain/interfaces/ISale.validator';
-import { Sale } from '@/domain/models/sale.model';
 
 export class SaleValidator implements ISaleValidator {
     validate(payload: Sale): void {

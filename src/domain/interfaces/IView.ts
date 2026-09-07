@@ -1,5 +1,6 @@
-import { Product } from './../models/product.model';
-import { Client } from '@/domain/models/client.model';
+import { Client } from "@/domain/entities/client.entity";
+import { Product } from "@/domain/entities/product.entity";
+
 
 export interface IView {
     start(): void;
